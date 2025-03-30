@@ -1,0 +1,210 @@
+[
+    {
+      "grd": "12345",
+      "description": "Flux Capacitor - Standard Model",
+      "price_kg": 550.75,
+      "price_lb": 250.00,
+      "category": "Time Travel Components",
+      "notes": "Requires 1.21 Gigawatts. Handle with care."
+    },
+    {
+      "grd": "67890",
+      "description": "Adamantium Alloy Ingot (Raw)",
+      "price_kg": 12000.00,
+      "price_lb": 5443.11,
+      "category": "Exotic Metals",
+      "notes": "Virtually indestructible. For specialized use only."
+    },
+    {
+      "grd": "10112",
+      "description": "Unobtanium Ore Sample",
+      "price_kg": 95000.50,
+      "price_lb": 43091.28,
+      "category": "Exotic Minerals",
+      "notes": "Superconductive properties. Extremely rare."
+    },
+    {
+      "grd": "12135",
+      "description": "Self-Sealing Stem Bolt",
+      "price_kg": 5.20,
+      "price_lb": 2.36,
+      "category": "Fasteners",
+      "notes": "Pack of 100. Reverse-ratcheting."
+    },
+    {
+      "grd": "44087",
+      "description": "Kryptonite Shard (Green)",
+      "price_kg": 7800.00,
+      "price_lb": 3538.02,
+      "category": "Exotic Minerals",
+      "notes": "Hazardous to Kryptonians. Shielding required."
+    },
+    {
+      "grd": "99001",
+      "description": "Mithril Chainmail Shirt",
+      "price_kg": 1500.00,
+      "price_lb": 680.39,
+      "category": "Armor",
+      "notes": "Lightweight and incredibly strong."
+    },
+    {
+      "grd": "75001",
+      "description": "Carbon Fiber Sheeting (1m x 1m)",
+      "price_kg": 150.00,
+      "price_lb": 68.04,
+      "category": "Materials",
+      "notes": "High tensile strength, aerospace grade."
+    },
+    {
+      "grd": "75002",
+      "description": "Titanium Rod (10mm x 1m)",
+      "price_kg": 95.00,
+      "price_lb": 43.09,
+      "category": "Metals",
+      "notes": "Grade 5 alloy (Ti-6Al-4V)."
+    },
+    {
+      "grd": "3012A",
+      "description": "LED Strip Light (5m, RGBW)",
+      "price_kg": 0.80,
+      "price_lb": 0.36,
+      "category": "Electronics",
+      "notes": "Includes remote control and power adapter."
+    },
+    {
+      "grd": "88400",
+      "description": "Antimatter Containment Unit (Model 3)",
+      "price_kg": 500000.00,
+      "price_lb": 226796.18,
+      "category": "Sci-Fi Equipment",
+      "notes": "Requires stable power source. Do not shake."
+    },
+    {
+      "grd": "2199B",
+      "description": "Polycarbonate Sheet (Clear, 3mm)",
+      "price_kg": 25.00,
+      "price_lb": 11.34,
+      "category": "Materials",
+      "notes": "Shatter-resistant, UV coated."
+    },
+    {
+      "grd": "55055",
+      "description": "Arduino Uno R3 Microcontroller",
+      "price_kg": 0.05,
+      "price_lb": 0.02,
+      "category": "Electronics",
+      "notes": "Genuine board, includes USB cable."
+    },
+    {
+      "grd": "60010",
+      "description": "Nutrient Paste (Type Gamma)",
+      "price_kg": 12.00,
+      "price_lb": 5.44,
+      "category": "Foodstuffs",
+      "notes": "Optimized for long space voyages. Vaguely tastes like chicken."
+    },
+    {
+      "grd": "41005",
+      "description": "Laser Diode Module (Red, 5mW)",
+      "price_kg": 0.01,
+      "price_lb": 0.00,
+      "category": "Electronics",
+      "notes": "Class 3R laser product. Avoid direct eye exposure."
+    },
+    {
+      "grd": "81300",
+      "description": "Replicator Ration Pack (Emergency)",
+      "price_kg": 0.50,
+      "price_lb": 0.23,
+      "category": "Sci-Fi Equipment",
+      "notes": "Synthesizes basic sustenance. Single use."
+    },
+    {
+      "grd": "22447",
+      "description": "Industrial Adhesive (Epoxy Resin)",
+      "price_kg": 18.00,
+      "price_lb": 8.16,
+      "category": "Adhesives",
+      "notes": "Two-part system. Cures in 24 hours."
+    },
+    {
+      "grd": "90110",
+      "description": "Acoustic Foam Panel (Wedge Style)",
+      "price_kg": 1.50,
+      "price_lb": 0.68,
+      "category": "Building Materials",
+      "notes": "Reduces echo and reverb. Pack of 6."
+    },
+    {
+      "grd": "17760",
+      "description": "Dilithium Crystals (Unrefined Cluster)",
+      "price_kg": 18000.00,
+      "price_lb": 8164.63,
+      "category": "Exotic Minerals",
+      "notes": "Warp core compatible after processing. Handle with EM field."
+    },
+    {
+      "grd": "35501",
+      "description": "Servo Motor (High Torque, Metal Gear)",
+      "price_kg": 0.15,
+      "price_lb": 0.07,
+      "category": "Electronics",
+      "notes": "Standard size, 15kg/cm torque."
+    },
+    {
+      "grd": "62109",
+      "description": "Hydroponic Nutrient Solution (A+B)",
+      "price_kg": 9.00,
+      "price_lb": 4.08,
+      "category": "Agriculture",
+      "notes": "Concentrated formula. Dilute before use. 1L set."
+    },
+    {
+      "grd": "0088A",
+      "description": "Camouflage Netting (Woodland)",
+      "price_kg": 2.20,
+      "price_lb": 1.00,
+      "category": "Outdoor Gear",
+      "notes": "3m x 5m coverage. Durable synthetic material."
+    },
+    {
+      "grd": "50505",
+      "description": "Raspberry Pi 4 Model B (4GB RAM)",
+      "price_kg": 0.08,
+      "price_lb": 0.04,
+      "category": "Electronics",
+      "notes": "Requires separate power supply and SD card."
+    },
+    {
+      "grd": "77112",
+      "description": "Graphene Aerogel Sample",
+      "price_kg": 350.00,
+      "price_lb": 158.75,
+      "category": "Materials",
+      "notes": "Extremely lightweight and porous. Research grade."
+    },
+    {
+      "grd": "49001",
+      "description": "Plasma Cutter (Handheld Model PT-31)",
+      "price_kg": 5.50,
+      "price_lb": 2.49,
+      "category": "Tools",
+      "notes": "Requires compressed air source. Consumables sold separately."
+    },
+    {
+      "grd": "20330",
+      "description": "Neodymium Magnet (N52 Grade, Disc)",
+      "price_kg": 0.03,
+      "price_lb": 0.01,
+      "category": "Magnets",
+      "notes": "Extremely strong. Keep away from electronics. 20mm x 3mm."
+    },
+    {
+      "grd": "84771",
+      "description": "Universal Translator Module (Beta)",
+      "price_kg": 0.25,
+      "price_lb": 0.11,
+      "category": "Sci-Fi Equipment",
+      "notes": "Translates common galactic languages. Accuracy may vary."
+    }
+  ]

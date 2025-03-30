@@ -1,0 +1,333 @@
+/* --- Base Styles & Variables --- */
+
+:root {
+    --primary-purple: #6a0dad;
+    --glow-purple: #a855f7;
+    --dark-bg: #181c27;
+    --light-text: #f3f4f6;
+    --medium-text: #9ca3af;
+    --card-bg: #1f2937;
+    --border-color: rgba(168, 85, 247, 0.3);
+    --glow-intensity-weak: 0 0 15px;
+    --glow-intensity-medium: 0 0 30px;
+    --glow-intensity-strong: 0 0 50px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--light-text);
+    line-height: 1.6;
+    overflow: hidden; /* Prevent horizontal scrollbar */
+    width: 100vw; /* Full viewport width */
+    max-width: 100vw; /* Ensure it doesn't exceed viewport width */
+    min-width: 100vw; /* Ensure it doesn't go below viewport width */
+    display: flex;
+    flex-direction: column; /* Ensure content stacks vertically */
+    min-height: 100vh;
+    padding: 0.5rem; /* Reduced padding */
+    /* Background Glow Effect */
+    background-color: var(--dark-bg);
+    background-image: radial-gradient(
+        circle 500px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(168, 85, 247, 0.10) 0%,
+        rgba(168, 85, 247, 0.0) 60%
+    );
+    background-repeat: no-repeat;
+}
+
+.container {
+    width: 100%; /* Full width */
+    max-width: 100%; /* Ensure it doesn't exceed viewport width */
+    min-width: 100%; /* Ensure it doesn't go below viewport width */
+    margin: 0; /* Remove auto margins */
+    padding-left: 0;
+    padding: 0 10px; /* Reduced padding */
+}
+
+h1, h2, h3, h4 {
+    margin-bottom: 1rem;
+    color: var(--light-text);
+    text-shadow: var(--glow-intensity-weak) var(--glow-purple);
+}
+/* ... (other heading sizes if needed) ... */
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.5rem; }
+
+p {
+    margin-bottom: 1rem;
+    color: var(--medium-text);
+}
+
+a {
+    color: var(--glow-purple);
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    width: 100%;
+}
+a:hover {
+    color: var(--light-text);
+    text-shadow: var(--glow-intensity-weak) var(--glow-purple);
+}
+
+/* --- Header & Navigation (Optional - Keep if desired) --- */
+.main-header {
+    width: 100%;
+    background-color: rgba(31, 41, 55, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    position: sticky; /* Make non-sticky if interfering */
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2rem; /* Add space below header */
+    opacity: 0.5;
+}
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--light-text);
+    text-shadow: var(--glow-intensity-weak) var(--glow-purple);
+}
+.main-nav ul {
+    list-style: none;
+    display: flex;
+}
+.main-nav ul li {
+    margin-left: 1rem; /* Reduced margin */
+}
+.main-nav ul li a {
+    font-weight: 500;
+}
+
+/* --- Search Page Layout --- */
+.search-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Left column | Right column */
+    gap: 3rem;
+    padding: 1rem 0; /* Reduced padding */
+    width: 100%;
+    max-width: 100%;
+    min-height: 70vh; /* Ensure layout takes up space */
+    align-items: flex-start; /* Align content to the top */
+}
+
+/* --- Left Column (Search & Suggestions) --- */
+.search-column {
+    position: relative; /* For potential absolute positioning inside if needed */
+}
+
+#searchInput, #suggestionsList {
+    width: 100%;
+    padding: 12px 15px; /* Reduced padding */
+    font-size: 1.1rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px; /* Slightly rounded */
+    color: var(--light-text);
+    margin-bottom: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: var(--glow-purple);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+}
+
+#suggestionsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 400px; /* Limit height and make scrollable */
+    overflow-y: auto;
+    width: 100%;
+    /* Custom scrollbar styling (optional but nice) */
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-purple) var(--dark-bg);
+}
+#suggestionsList::-webkit-scrollbar {
+    width: 8px;
+}
+#suggestionsList::-webkit-scrollbar-track {
+    background: var(--dark-bg);
+    border-radius: 4px;
+}
+#suggestionsList::-webkit-scrollbar-thumb {
+    background-color: var(--primary-purple);
+    border-radius: 4px;
+    border: 2px solid var(--dark-bg);
+}
+
+
+.suggestion-item {
+    padding: 10px 15px; /* Reduced padding */
+    margin-bottom: 0.5rem;
+    background-color: var(--dark-bg); /* Slightly darker than input */
+    border: 1px solid var(--border-color);
+    border-radius: 25px; /* Pill shape like image */
+    cursor: pointer;
+    width: 100%;
+    color: var(--medium-text);
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden; /* Prevent text overflow issues */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.suggestion-item:hover,
+.suggestion-item.highlighted {
+    background-color: var(--card-bg); /* Highlight background */
+    color: var(--light-text);
+    border-color: var(--glow-purple);
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+}
+
+/* --- Right Column (Details) --- */
+.details-column {
+    background-color: rgba(31, 41, 55, 0.5); /* Semi-transparent background */
+    padding: 1.5rem; /* Reduced padding */
+    border-radius: 8px;
+    width: 100%;
+    border: 1px solid var(--border-color);
+    min-height: 300px; /* Give it some default height */
+}
+
+#itemDetails h3 {
+    margin-bottom: 1.5rem;
+    color: var(--glow-purple);
+    text-shadow: none;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+/* New styles for detail-line and copy-button */
+.detail-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(75, 85, 99, 0.5);
+}
+
+.detail-line:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+#itemDetails p {
+    margin-bottom: 0; /* Remove margin */
+    padding-bottom: 0; /* Remove padding */
+    border-bottom: none; /* Remove border */
+    color: var(--medium-text);
+    font-size: 1rem;
+    line-height: 1.4;
+    display: block; /* Remove flex styles */
+    justify-content: none;
+}
+
+#itemDetails span {
+    color: var(--light-text);
+    font-weight: 500;
+    text-align: left; /* Align value to the left */
+    margin-left: 1rem; /* Space between label and value */
+}
+
+.copy-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 1rem; /* Space between text and icon */
+    opacity: 0.7; /* Slightly transparent */
+    transition: opacity 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+    fill: var(--light-text); /* Changed to white */
+}
+
+.copy-button:hover {
+    opacity: 1;
+    filter: drop-shadow(var(--glow-intensity-weak) var(--glow-purple));
+    fill: var(--light-text);
+}
+
+.copy-button:focus {
+    outline: none;
+}
+
+#copyNotification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--primary-purple);
+    color: var(--light-text);
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px var(--glow-purple);
+    z-index: 1001;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#copyNotification.show {
+    opacity: 1;
+}
+
+
+/* --- Footer --- */
+.main-footer {
+    background-color: var(--dark-bg); /* Match the main background */
+    color: var(--medium-text);
+    text-align: center;
+    padding: 1rem 0; /* Reduced padding */
+    margin-top: auto; /* Push the footer to the bottom */
+    border-top: 1px solid var(--border-color); /* Keep the border */
+    font-size: 1.1rem;
+    width: 100%;
+    opacity: 0.5;
+}
+.main-footer p { margin-bottom: 0.5rem;}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .search-layout {
+        grid-template-columns: 1fr; /* Stack columns */
+        gap: 2rem;
+    }
+    .details-column {
+        min-height: auto; /* Adjust height */
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header .container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .main-nav { width: 100%; }
+    .main-nav ul {
+        margin-top: 1rem;
+        padding-left: 0;
+    }
+    .main-nav ul { width: 100%; }
+    .main-nav ul li {
+        margin: 0 0.8rem;
+    }
+    #searchInput { font-size: 1rem; padding: 12px 15px; }
+    .suggestion-item { padding: 10px 15px; }
+    .details-column { padding: 1.5rem; }
+    #itemDetails p { flex-direction: column; align-items: flex-start; }
+    #itemDetails span { text-align: left; margin-left: 0; margin-top: 0.2rem; }
+}
