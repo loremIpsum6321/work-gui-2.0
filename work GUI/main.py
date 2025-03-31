@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDesktopWidget, QLabel, QWidget
-from PyQt5.QtCore import Qt, QRect, QPoint, QSize, QPropertyAnimation, QEasingCurve, QTimer, QEvent
+from PyQt5.QtCore import Qt, QRect, QPoint, QSize, QPropertyAnimation, QEasingCurve, QTimer, QEvent, QMargins
 from PyQt5.QtWebEngineWidgets import QWebEngineSettings, QWebEngineView
 from webview_manager import WebviewManager
 from server_manager import ServerManager, get_local_ip
@@ -16,6 +16,7 @@ class MainWindow(QMainWindow):
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setMouseTracking(True)
         self.setMinimumSize(400, 600)
+        self.padding = QMargins(0, 0, 0, 50)
 
         self.oldPos = None
         self.close_button = None
@@ -27,6 +28,7 @@ class MainWindow(QMainWindow):
 
         # Create the webview manager and set it as the central widget
         self.webview_manager = WebviewManager(server_manager)
+        self.webview_manager.setContentsMargins(self.padding)
         self.setCentralWidget(self.webview_manager)
 
         self.init_close_button()
@@ -74,6 +76,7 @@ class MainWindow(QMainWindow):
         if obj == self.resize_widget and event.type() == QEvent.MouseMove:
             self.resize_window(event.globalPos())
         return super().eventFilter(obj, event)
+
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
             self.oldPos = event.globalPos()
@@ -94,14 +97,15 @@ class MainWindow(QMainWindow):
             delta = global_pos.x() - self.oldPos.x()
             new_width = self.width() + delta
             if new_width >= self.minimumWidth():
-                self.resize(new_width, self.height())
+                self.resize(new_width, self.height())                
                 self.oldPos = global_pos
                 self.resize_widget.setGeometry(self.width() - 10, 0, 10, self.height())
                 self.close_button.move(self.width() - 20, 0)
 
     def resizeEvent(self, event):
         """Override resizeEvent to keep the window pinned to the left."""
-        screen = QDesktopWidget().screenGeometry()
+        screen = QDesktopWidget().screenGeometry()        
+        self.webview_manager.setContentsMargins(self.padding)
         self.setGeometry(0, 0, self.width(), screen.height())
         if self.close_button:
             self.close_button.move(380, 0)
@@ -131,6 +135,7 @@ class MainWindow(QMainWindow):
         if self.resize_widget.underMouse():
             self.setCursor(Qt.SizeHorCursor)
         super().mouseMoveEvent(event)
+
     def show(self):
         self.resizeEvent(None)
         super().show()
