@@ -46,19 +46,21 @@ class MainWindow(QMainWindow):
         self.close_button.setText("X")
         self.close_button.setStyleSheet("""
             QLabel {
-                color: rgba(255, 255, 255, 0);
+                color: rgba(255, 255, 255, 0); 
                 font-size: 20px;
                 font-weight: bold;
                 background-color: rgba(0, 0, 0, 0);
                 border-radius: 10px;
+                padding-left: 10px; /* Add padding to the left */
+                padding-right: 10px; /* Add padding to the right */
             }
             QLabel:hover {
                 color: rgba(255, 255, 255, 255);
-                background-color: rgba(255, 0, 0, 100);
+                background-color: rgba(24, 28, 39, 100);
             }
         """)
         self.close_button.setAlignment(Qt.AlignCenter)
-        self.close_button.setFixedSize(20, 20)
+        self.close_button.setFixedSize(40, 20) #increased the width from 20 to 40
         self.close_button.mousePressEvent = self.close_app
         self.close_button.hide()
        
@@ -109,7 +111,7 @@ class MainWindow(QMainWindow):
         self.webview_manager.setContentsMargins(self.padding)
         self.setGeometry(0, 0, self.width(), screen.height())
         if self.close_button:
-            self.close_button.move(self.width() - 20, 0)
+            self.close_button.move(self.width() - 40, 0) #changed from 20 to 40
         self.resize_widget.setGeometry(self.width() - 10, 0, 10, self.height())
         super().resizeEvent(event)
 

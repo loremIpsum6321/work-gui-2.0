@@ -1,210 +1,254 @@
 [
     {
-      "grd": "12345",
-      "description": "Flux Capacitor - Standard Model",
-      "price_kg": 550.75,
-      "price_lb": 250.00,
-      "category": "Time Travel Components",
-      "notes": "Requires 1.21 Gigawatts. Handle with care."
-    },
-    {
-      "grd": "67890",
-      "description": "Adamantium Alloy Ingot (Raw)",
-      "price_kg": 12000.00,
-      "price_lb": 5443.11,
-      "category": "Exotic Metals",
-      "notes": "Virtually indestructible. For specialized use only."
-    },
-    {
-      "grd": "10112",
-      "description": "Unobtanium Ore Sample",
-      "price_kg": 95000.50,
-      "price_lb": 43091.28,
-      "category": "Exotic Minerals",
-      "notes": "Superconductive properties. Extremely rare."
-    },
-    {
-      "grd": "12135",
-      "description": "Self-Sealing Stem Bolt",
-      "price_kg": 5.20,
-      "price_lb": 2.36,
-      "category": "Fasteners",
-      "notes": "Pack of 100. Reverse-ratcheting."
-    },
-    {
-      "grd": "44087",
-      "description": "Kryptonite Shard (Green)",
-      "price_kg": 7800.00,
-      "price_lb": 3538.02,
-      "category": "Exotic Minerals",
-      "notes": "Hazardous to Kryptonians. Shielding required."
-    },
-    {
-      "grd": "99001",
-      "description": "Mithril Chainmail Shirt",
-      "price_kg": 1500.00,
-      "price_lb": 680.39,
-      "category": "Armor",
-      "notes": "Lightweight and incredibly strong."
-    },
-    {
-      "grd": "75001",
-      "description": "Carbon Fiber Sheeting (1m x 1m)",
-      "price_kg": 150.00,
-      "price_lb": 68.04,
-      "category": "Materials",
-      "notes": "High tensile strength, aerospace grade."
-    },
-    {
-      "grd": "75002",
-      "description": "Titanium Rod (10mm x 1m)",
-      "price_kg": 95.00,
-      "price_lb": 43.09,
-      "category": "Metals",
-      "notes": "Grade 5 alloy (Ti-6Al-4V)."
-    },
-    {
-      "grd": "3012A",
-      "description": "LED Strip Light (5m, RGBW)",
-      "price_kg": 0.80,
-      "price_lb": 0.36,
-      "category": "Electronics",
-      "notes": "Includes remote control and power adapter."
-    },
-    {
-      "grd": "88400",
-      "description": "Antimatter Containment Unit (Model 3)",
-      "price_kg": 500000.00,
-      "price_lb": 226796.18,
-      "category": "Sci-Fi Equipment",
-      "notes": "Requires stable power source. Do not shake."
-    },
-    {
-      "grd": "2199B",
-      "description": "Polycarbonate Sheet (Clear, 3mm)",
-      "price_kg": 25.00,
-      "price_lb": 11.34,
-      "category": "Materials",
-      "notes": "Shatter-resistant, UV coated."
-    },
-    {
-      "grd": "55055",
-      "description": "Arduino Uno R3 Microcontroller",
-      "price_kg": 0.05,
-      "price_lb": 0.02,
-      "category": "Electronics",
-      "notes": "Genuine board, includes USB cable."
-    },
-    {
-      "grd": "60010",
-      "description": "Nutrient Paste (Type Gamma)",
-      "price_kg": 12.00,
-      "price_lb": 5.44,
-      "category": "Foodstuffs",
-      "notes": "Optimized for long space voyages. Vaguely tastes like chicken."
-    },
-    {
-      "grd": "41005",
-      "description": "Laser Diode Module (Red, 5mW)",
-      "price_kg": 0.01,
-      "price_lb": 0.00,
-      "category": "Electronics",
-      "notes": "Class 3R laser product. Avoid direct eye exposure."
-    },
-    {
-      "grd": "81300",
-      "description": "Replicator Ration Pack (Emergency)",
-      "price_kg": 0.50,
-      "price_lb": 0.23,
-      "category": "Sci-Fi Equipment",
-      "notes": "Synthesizes basic sustenance. Single use."
-    },
-    {
-      "grd": "22447",
-      "description": "Industrial Adhesive (Epoxy Resin)",
-      "price_kg": 18.00,
-      "price_lb": 8.16,
-      "category": "Adhesives",
-      "notes": "Two-part system. Cures in 24 hours."
-    },
-    {
-      "grd": "90110",
-      "description": "Acoustic Foam Panel (Wedge Style)",
-      "price_kg": 1.50,
-      "price_lb": 0.68,
-      "category": "Building Materials",
-      "notes": "Reduces echo and reverb. Pack of 6."
-    },
-    {
-      "grd": "17760",
-      "description": "Dilithium Crystals (Unrefined Cluster)",
-      "price_kg": 18000.00,
-      "price_lb": 8164.63,
-      "category": "Exotic Minerals",
-      "notes": "Warp core compatible after processing. Handle with EM field."
-    },
-    {
-      "grd": "35501",
-      "description": "Servo Motor (High Torque, Metal Gear)",
-      "price_kg": 0.15,
-      "price_lb": 0.07,
-      "category": "Electronics",
-      "notes": "Standard size, 15kg/cm torque."
-    },
-    {
-      "grd": "62109",
-      "description": "Hydroponic Nutrient Solution (A+B)",
-      "price_kg": 9.00,
-      "price_lb": 4.08,
-      "category": "Agriculture",
-      "notes": "Concentrated formula. Dilute before use. 1L set."
-    },
-    {
-      "grd": "0088A",
-      "description": "Camouflage Netting (Woodland)",
-      "price_kg": 2.20,
-      "price_lb": 1.00,
-      "category": "Outdoor Gear",
-      "notes": "3m x 5m coverage. Durable synthetic material."
-    },
-    {
-      "grd": "50505",
-      "description": "Raspberry Pi 4 Model B (4GB RAM)",
-      "price_kg": 0.08,
-      "price_lb": 0.04,
-      "category": "Electronics",
-      "notes": "Requires separate power supply and SD card."
-    },
-    {
-      "grd": "77112",
-      "description": "Graphene Aerogel Sample",
-      "price_kg": 350.00,
-      "price_lb": 158.75,
-      "category": "Materials",
-      "notes": "Extremely lightweight and porous. Research grade."
-    },
-    {
-      "grd": "49001",
-      "description": "Plasma Cutter (Handheld Model PT-31)",
-      "price_kg": 5.50,
-      "price_lb": 2.49,
-      "category": "Tools",
-      "notes": "Requires compressed air source. Consumables sold separately."
-    },
-    {
-      "grd": "20330",
-      "description": "Neodymium Magnet (N52 Grade, Disc)",
-      "price_kg": 0.03,
-      "price_lb": 0.01,
-      "category": "Magnets",
-      "notes": "Extremely strong. Keep away from electronics. 20mm x 3mm."
-    },
-    {
-      "grd": "84771",
-      "description": "Universal Translator Module (Beta)",
-      "price_kg": 0.25,
-      "price_lb": 0.11,
-      "category": "Sci-Fi Equipment",
-      "notes": "Translates common galactic languages. Accuracy may vary."
-    }
-  ]
+      "grd": "1125288",
+      "description": "Potato Protein"
+  },
+  {
+      "grd": "1018771",
+      "description": "Lamb Meal"
+  },
+  {
+      "grd": "1051982",
+      "description": "Tapioca Starch"
+  },
+  {
+      "grd": "1155703",
+      "description": "Pea Protein ISO"
+  },
+  {
+      "grd": "1193966",
+      "description": "Brown Rice"
+  },
+  {
+      "grd": "1363940",
+      "description": "Fruit and Veggie"
+  },
+  {
+      "grd": "1231537",
+      "description": "Split Peas"
+  },
+  {
+      "grd": "1171583",
+      "description": "Low Ash Chicken Meal"
+  },
+  {
+      "grd": "1294959",
+      "description": "Beet Pulp"
+  },
+  {
+      "grd": "1119130",
+      "description": "Alfalfa"
+  },
+  {
+      "grd": "1108945",
+      "description": "Rolled Oats"
+  },
+  {
+      "grd": "1108909",
+      "description": "Rice Bran"
+  },
+  {
+      "grd": "1410541",
+      "description": "Sweet Potato"
+  },
+  {
+      "grd": "1334012",
+      "description": "Lentils"
+  },
+  {
+      "grd": "1145857",
+      "description": "Venison Meal"
+  },
+  {
+      "grd": "1236834",
+      "description": "Pea Conc. Pellets"
+  },
+  {
+      "grd": "1388543",
+      "description": "Prey Blend, Meal"
+  },
+  {
+      "grd": "1252788",
+      "description": "Chickpeas"
+  },
+  {
+      "grd": "1051957",
+      "description": "Egg, Dried"
+  },
+  {
+      "grd": "1379379",
+      "description": "Barley"
+  },
+  {
+      "grd": "1124454",
+      "description": "Potato Starch"
+  },
+  {
+      "grd": "1222383",
+      "description": "Manhaden Fish Meal"
+  },
+  {
+      "grd": "1207555",
+      "description": "Potato Flake"
+  },
+  {
+      "grd": "1193968",
+      "description": "Brewers Rice"
+  },
+  {
+      "grd": "1099330",
+      "description": "Salmon Meal"
+  },
+  {
+      "grd": "1327837",
+      "description": "Fitco, Dried Chicken Meal"
+  },
+  {
+      "grd": "1037725",
+      "description": "Flaxseed"
+  },
+  {
+      "grd": "1025323",
+      "description": "Cellulose"
+  },
+  {
+      "grd": "1225929",
+      "description": "Milo"
+  },
+  {
+      "grd": "1230567",
+      "description": "Oat Fiber"
+  },
+  {
+      "grd": "1327861",
+      "description": "Chicken Meal"
+  },
+  {
+      "grd": "1240711",
+      "description": "Duck Meal"
+  },
+  {
+      "grd": "1379221",
+      "description": "Pork Meal"
+  },
+  {
+      "grd": "1000508",
+      "description": "DL-Methionine"
+  },
+  {
+      "grd": "1000607",
+      "description": "Taurine"
+  },
+  {
+      "grd": "1227071",
+      "description": "Potassium Chloride"
+  },
+  {
+      "grd": "1233153",
+      "description": "Salt Tote"
+  },
+  {
+      "grd": "1239989",
+      "description": "Psyllium Husks"
+  },
+  {
+      "grd": "1240819",
+      "description": "NC Cat Base Mix"
+  },
+  {
+      "grd": "1297167",
+      "description": "Choline Chloride"
+  },
+  {
+      "grd": "1302872",
+      "description": "Natural Antiox Non GM Dry"
+  },
+  {
+      "grd": "1327834",
+      "description": "Pmx Feline Mineral IMS"
+  },
+  {
+      "grd": "1327869",
+      "description": "Pmx Dog Vitamin IMS"
+  },
+  {
+      "grd": "1327922",
+      "description": "Pmx Vitamin E"
+  },
+  {
+      "grd": "1327938",
+      "description": "Pmx Cat Vitamin + Taurine IMS"
+  },
+  {
+      "grd": "1350560",
+      "description": "Dicalcium Phosphate"
+  },
+  {
+      "grd": "1356301",
+      "description": "PX Min MPENS IAMS Dry Dog SS"
+  },
+  {
+      "grd": "1359154",
+      "description": "ABC Blend (Apples Blueberries Carrots)"
+  },
+  {
+      "grd": "1515977",
+      "description": "PMX Cat Trace Mineral"
+  },
+  {
+      "grd": "1162029",
+      "description": "Fat Chicken Naturally Stabilized Bulk"
+  },
+  {
+      "grd": "1493475",
+      "description": "Pal Enhancer XLD42582 v2 Liquid Ttes Drm"
+  },
+  {
+      "grd": "1307237",
+      "description": "Soy Oil, Non GM Unstabilized Bulk"
+  },
+  {
+      "grd": "1147609",
+      "description": "Sunflower Oil, Unstabilized Bulk"
+  },
+  {
+      "grd": "1190631",
+      "description": "Chicken Slurry"
+  },
+  {
+      "grd": "1195550",
+      "description": "Lamb Slurry"
+  },
+  {
+      "grd": "1240758",
+      "description": "Turkey Slurry"
+  },
+  {
+      "grd": "1240757",
+      "description": "Salmon Slurry"
+  },
+  {
+      "grd": "1240755",
+      "description": "Duck Slurry"
+  },
+  {
+      "grd": "1240759",
+      "description": "WhiteFish Slurry"
+  },
+  {
+      "grd": "1408105",
+      "description": "ACPF2"
+  },
+  {
+      "grd": "1101275",
+      "description": "Fish Oil"
+  },
+  {
+      "grd": "1305835",
+      "description": "Oxy'less Clear"
+  },
+  {
+      "grd": "1342086",
+      "description": "Naturox R30"
+  }
+]
