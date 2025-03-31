@@ -31,13 +31,7 @@ body {
     flex-direction: column; /* Ensure content stacks vertically */
     min-height: 100vh;
     padding: 0.5rem; /* Reduced padding */
-    /* Background Glow Effect */
     background-color: var(--dark-bg);
-    background-image: radial-gradient(
-        circle 500px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-        rgba(168, 85, 247, 0.10) 0%,
-        rgba(168, 85, 247, 0.0) 60%
-    );
     background-repeat: no-repeat;
 }
 
@@ -53,7 +47,6 @@ body {
 h1, h2, h3, h4 {
     margin-bottom: 1rem;
     color: var(--light-text);
-    text-shadow: var(--glow-intensity-weak) var(--glow-purple);
 }
 /* ... (other heading sizes if needed) ... */
 h2 { font-size: 2.2rem; }
@@ -69,11 +62,10 @@ a {
     text-decoration: none;
     transition: color 0.3s ease, text-shadow 0.3s ease;
     width: 100%;
-}
+} 
 a:hover {
     color: var(--light-text);
-    text-shadow: var(--glow-intensity-weak) var(--glow-purple);
-}
+} 
 
 /* --- Header & Navigation (Optional - Keep if desired) --- */
 .main-header {
@@ -98,7 +90,6 @@ a:hover {
     font-size: 1.8rem;
     font-weight: bold;
     color: var(--light-text);
-    text-shadow: var(--glow-intensity-weak) var(--glow-purple);
 }
 .main-nav ul {
     list-style: none;
@@ -143,7 +134,7 @@ a:hover {
 #searchInput:focus {
     outline: none;
     border-color: var(--glow-purple);
-    box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+    box-shadow: none;
 }
 
 #suggestionsList {
@@ -151,6 +142,7 @@ a:hover {
     padding: 0;
     margin: 0;
     max-height: 400px; /* Limit height and make scrollable */
+    height: 400px;
     overflow-y: auto;
     width: 100%;
     /* Custom scrollbar styling (optional but nice) */
@@ -191,7 +183,7 @@ a:hover {
     background-color: var(--card-bg); /* Highlight background */
     color: var(--light-text);
     border-color: var(--glow-purple);
-    box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+    box-shadow: none;
 }
 
 /* --- Right Column (Details) --- */
@@ -207,7 +199,6 @@ a:hover {
 #itemDetails h3 {
     margin-bottom: 1.5rem;
     color: var(--glow-purple);
-    text-shadow: none;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 0.5rem;
 }
@@ -258,7 +249,7 @@ a:hover {
 
 .copy-button:hover {
     opacity: 1;
-    filter: drop-shadow(var(--glow-intensity-weak) var(--glow-purple));
+    filter: none;
     fill: var(--light-text);
 }
 
@@ -274,7 +265,7 @@ a:hover {
     color: var(--light-text);
     padding: 10px 20px;
     border-radius: 5px;
-    box-shadow: 0 0 15px var(--glow-purple);
+    box-shadow: none;
     z-index: 1001;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;

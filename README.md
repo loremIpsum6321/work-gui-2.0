@@ -1,10 +1,10 @@
-# Local Webview Application
+# Local Web view Application
 
-This is a custom webview application built with Python and PyQt5. It's designed to display web content, primarily local HTML files, in a clean, fullscreen environment without the usual browser chrome.
+This is a custom web view application built with Python and PyQt5. It's designed to display web content, primarily local HTML files, in a clean, full screen environment without the usual browser chrome.
 
 ## Features
 
-*   **Fullscreen Webview:** The application runs in fullscreen mode, providing an immersive experience without any window borders or title bars.
+*   **Fullscreen Web view:** The application runs in full screen mode, providing an immersive experience without any window borders or title bars.
 *   **Hidden URL Bar:** The URL bar is hidden by default. You can toggle its visibility using the `Ctrl+L` hotkey.
 *   **Local HTTP Server:** On startup, the application automatically starts a local HTTP server using `python -m http.server` in the background. This allows you to easily view local HTML files.
 *   **Local File Browser:** You can browse and open local HTML files using the `Ctrl+O` hotkey. A file dialog will appear, allowing you to select the desired file.

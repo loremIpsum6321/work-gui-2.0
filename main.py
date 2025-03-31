@@ -2,8 +2,9 @@ import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDesktopWidget, QLabel, QWidget
 from PyQt5.QtCore import Qt, QRect, QPoint, QSize, QPropertyAnimation, QEasingCurve, QTimer, QEvent, QMargins
 from PyQt5.QtWebEngineWidgets import QWebEngineSettings, QWebEngineView
-from webview_manager import WebviewManager
-from server_manager import ServerManager, get_local_ip
+
+from core.webview_manager import WebviewManager
+from core.server_manager import ServerManager, get_local_ip
 import os
 
 class MainWindow(QMainWindow):
@@ -16,7 +17,9 @@ class MainWindow(QMainWindow):
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setMouseTracking(True)
         self.setMinimumSize(400, 600)
-        self.padding = QMargins(0, 0, 0, 50)
+        
+        #padding for the window
+        self.padding = QMargins(0, 0, 0, 50) #arguments are (left, top, right, bottom) 50 px to be ontop of the start bar
 
         self.oldPos = None
         self.close_button = None
@@ -28,14 +31,14 @@ class MainWindow(QMainWindow):
 
         # Create the webview manager and set it as the central widget
         self.webview_manager = WebviewManager(server_manager)
-        self.webview_manager.setContentsMargins(self.padding)
         self.setCentralWidget(self.webview_manager)
 
         self.init_close_button()
         self.resize_widget = QWidget(self)
         self.resize_widget.setCursor(Qt.SizeHorCursor)
-        self.resize_widget.setGeometry(390, 0, 10, self.height())
         self.resize_widget.installEventFilter(self)
+        self.resize_widget.enterEvent = self.resize_enter_event
+        self.resize_widget.mousePressEvent = self.resize_mouse_press_event
 
     def init_close_button(self):
         """Initializes the close button."""
@@ -56,7 +59,6 @@ class MainWindow(QMainWindow):
         """)
         self.close_button.setAlignment(Qt.AlignCenter)
         self.close_button.setFixedSize(20, 20)
-        self.close_button.move(380, 0)
         self.close_button.mousePressEvent = self.close_app
         self.close_button.hide()
        
@@ -65,11 +67,12 @@ class MainWindow(QMainWindow):
         self.close_animation.setEndValue(0)
         self.close_animation.finished.connect(self.close)
 
+        self.close_button_animation = QPropertyAnimation(self.close_button, b"windowOpacity")
+        self.close_button_animation.setDuration(200)
+        self.close_button_animation.setEasingCurve(QEasingCurve.OutQuad)
+
     def close_app(self, event):
         """Closes the application."""
-       
-        self.close_animation.setDuration(500)
-        self.close_animation.setEndValue(0)
         self.close_animation.start()
 
     def eventFilter(self, obj, event):
@@ -99,8 +102,6 @@ class MainWindow(QMainWindow):
             if new_width >= self.minimumWidth():
                 self.resize(new_width, self.height())                
                 self.oldPos = global_pos
-                self.resize_widget.setGeometry(self.width() - 10, 0, 10, self.height())
-                self.close_button.move(self.width() - 20, 0)
 
     def resizeEvent(self, event):
         """Override resizeEvent to keep the window pinned to the left."""
@@ -108,7 +109,8 @@ class MainWindow(QMainWindow):
         self.webview_manager.setContentsMargins(self.padding)
         self.setGeometry(0, 0, self.width(), screen.height())
         if self.close_button:
-            self.close_button.move(380, 0)
+            self.close_button.move(self.width() - 20, 0)
+        self.resize_widget.setGeometry(self.width() - 10, 0, 10, self.height())
         super().resizeEvent(event)
 
     def enterEvent(self, event):
@@ -116,28 +118,24 @@ class MainWindow(QMainWindow):
         if self.close_button:
             self.close_button.show()
             self.close_button.raise_()
-            self.close_button_animation = QPropertyAnimation(self.close_button, b"windowOpacity")
-            self.close_button_animation.setDuration(200)
             self.close_button_animation.setStartValue(0)
             self.close_button_animation.setEndValue(1)
-            self.close_button_animation.setEasingCurve(QEasingCurve.OutQuad)
             self.close_button_animation.start()
 
     def leaveEvent(self, event):
         """Hides the close button when the mouse leaves the window."""
         if self.close_button:
-            self.close_button_animation = QPropertyAnimation(self.close_button, b"windowOpacity")
-            self.close_button_animation.setDuration(200)
             self.close_button_animation.setEndValue(0)
             self.close_button_animation.start()
-           
-    def mouseMoveEvent(self, event):
-        if self.resize_widget.underMouse():
-            self.setCursor(Qt.SizeHorCursor)
-        super().mouseMoveEvent(event)
+    
+    def resize_enter_event(self, event):
+        self.setCursor(Qt.SizeHorCursor)
+
+    def resize_mouse_press_event(self, event):
+        if event.button() == Qt.LeftButton:
+            self.oldPos = event.globalPos()
 
     def show(self):
-        self.resizeEvent(None)
         super().show()
 
 def main():

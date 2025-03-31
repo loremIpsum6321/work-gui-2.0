@@ -1,9 +1,9 @@
 import sys
-from PyQt5.QtCore import QUrl, Qt
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLineEdit, QShortcut, QFileDialog
-from PyQt5.QtWebEngineWidgets import QWebEngineView
-from file_browser import FileBrowser
-from utils import is_valid_url, get_local_ip
+from PyQt5.QtCore import QUrl, Qt, QDir
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLineEdit, QShortcut, QFileDialog, QPushButton, QHBoxLayout
+from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile
+from ui.file_browser import FileBrowser # Updated import
+from .utils import is_valid_url, get_local_ip # Updated import
 import os
 
 class WebviewManager(QWidget):
@@ -15,7 +15,7 @@ class WebviewManager(QWidget):
         self.server_manager = server_manager
         self.setWindowTitle("Local Webview")
         self.setWindowFlag(Qt.FramelessWindowHint)  # Remove window frame
-        self.showFullScreen()  # Start in fullscreen
+        #self.showFullScreen()  # Start in fullscreen
 
         self.init_ui()
 
@@ -39,6 +39,20 @@ class WebviewManager(QWidget):
         # Hotkey to open file browser (Ctrl+O)
         self.file_shortcut = QShortcut("Ctrl+O", self)
         self.file_shortcut.activated.connect(self.open_file_browser)
+
+        # Create a button for clearing the cache
+        self.clear_cache_button = QPushButton("Clear Cache", self)
+        self.clear_cache_button.clicked.connect(self.clear_cache)
+        self.clear_cache_button.hide()
+
+        # Create a layout for the button
+        button_layout = QHBoxLayout()
+        button_layout.addWidget(self.clear_cache_button)
+        self.layout.addLayout(button_layout)
+
+        # Hotkey to show/hide clear cache button (Ctrl+Shift+C)
+        self.clear_cache_shortcut = QShortcut("Ctrl+Shift+C", self)
+        self.clear_cache_shortcut.activated.connect(self.toggle_clear_cache_button)
 
         # Load the initial URL (local server index)
         self.load_initial_url()
@@ -73,3 +87,20 @@ class WebviewManager(QWidget):
         file_path = file_browser.get_file_path()
         if file_path:
             self.webview.setUrl(QUrl.fromLocalFile(file_path))
+
+    def clear_cache(self):
+        """Clears the webview cache."""
+        profile = QWebEngineProfile.defaultProfile()
+        profile.clearHttpCache()
+        # Clear persistent storage (cookies, local storage, etc.)
+        profile.clearAllVisitedLinks()
+        cookie_store = profile.cookieStore()
+        cookie_store.deleteAllCookies()
+        # Clear the cache directory manually (optional, but recommended)
+        cache_path = profile.cachePath()
+        QDir(cache_path).removeRecursively()
+        print("Cache cleared.")
+
+    def toggle_clear_cache_button(self):
+        """Toggles the visibility of the clear cache button."""
+        self.clear_cache_button.setVisible(not self.clear_cache_button.isVisible())

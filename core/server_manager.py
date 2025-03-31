@@ -2,7 +2,20 @@ import http.server
 import socketserver
 import threading
 import os
-from utils import get_local_ip
+from .utils import get_local_ip  # Updated import
+
+class FaviconHandler(http.server.SimpleHTTPRequestHandler):
+    def do_GET(self):
+        if self.path == '/favicon.ico':
+            # Serve the favicon.ico file
+            self.send_response(200)
+            self.send_header('Content-type', 'image/x-icon')
+            self.end_headers()
+            with open('assets/favicon.ico', 'rb') as f:
+                self.wfile.write(f.read())
+        else:
+            # Use the default handler for other requests
+            super().do_GET()
 
 class ServerManager:
     """Manages the local HTTP server."""
@@ -15,7 +28,7 @@ class ServerManager:
 
     def start_server(self):
         """Starts the local HTTP server in a separate thread."""
-        handler = http.server.SimpleHTTPRequestHandler
+        handler = FaviconHandler
         self.httpd = socketserver.TCPServer(("", self.port), handler)
         self.server_thread = threading.Thread(target=self.httpd.serve_forever)
         self.server_thread.daemon = True  # Allow the main thread to exit

@@ -252,70 +252,22 @@
     // ==========================================
     document.addEventListener('DOMContentLoaded', () => {
     // == SMOOTH MOUSE-FOLLOWING GLOW EFFECT ==
-    // ==========================================
-
-    const bodyElementForGlow = document.body; // Re-declare if needed, or reuse existing body var
-
-    // --- Customization Variables ---
-    const glowConfig = {
-        glowSize: 900,                  // Size of the glow circle in pixels
-        followSpeed: 0.001,             // Lower value = slower, smoother follow (0.0 - 1.0)
-        baseColorRGB: "168, 85, 247",   // RGB values for the glow purple color (without 'rgba()')
-        baseAlpha: 0.06,                // Base intensity/opacity (0.0 - 1.0)
-        fadeStop: 0.6                   // Where the glow fades to transparent (0.0 - 1.0, e.g., 0.7 = 70%)
-    };
-
-    // --- State Variables for Glow Position ---
-    let targetX = window.innerWidth / 2;  // Start glow in center X
-    let targetY = window.innerHeight / 2; // Start glow in center Y
-    let currentX = targetX;
-    let currentY = targetY;
-
-    // --- Update Target Position on Mouse Move ---
-    window.addEventListener('mousemove', (event) => {
-        targetX = event.clientX;
-        targetY = event.clientY;
-    }, { passive: true }); // Use passive listener for performance
-
-    // --- Animation Loop ---
-    function animateGlow() {
-        // Calculate the difference between current and target positions
-        let dx = targetX - currentX;
-        let dy = targetY - currentY;
-
-        // Smoothly interpolate the current position towards the target
-        currentX += dx * glowConfig.followSpeed;
-        currentY += dy * glowConfig.followSpeed;
-
-        // Construct the radial gradient string using config variables
-        const gradient = `radial-gradient(
-            circle ${glowConfig.glowSize}px at ${currentX}px ${currentY}px,
-            rgba(${glowConfig.baseColorRGB}, ${glowConfig.baseAlpha}) 0%,
-            rgba(${glowConfig.baseColorRGB}, 0) ${glowConfig.fadeStop * 100}%
-        )`;
-
-        // Apply the gradient directly to the body's background image style
-        // Note: This assumes body has a solid background-color set in CSS
-        bodyElementForGlow.style.backgroundImage = gradient;
-
-        // Request the next animation frame
-        requestAnimationFrame(animateGlow);
-    }
-
-    // --- Start the Animation ---
-    // Only start if the user isn't preferring reduced motion
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        requestAnimationFrame(animateGlow);
-    } else {
-        // Optional: Apply a static, less intense glow for reduced motion users
+    // ==========================================    
+        const bodyElementForGlow = document.body; // Re-declare if needed, or reuse existing body var
+        const glowConfig = {
+            glowSize: 900,                  // Size of the glow circle in pixels
+            baseColorRGB: "168, 85, 247",   // RGB values for the glow purple color (without 'rgba()')
+            baseAlpha: 0.06,                // Base intensity/opacity (0.0 - 1.0)
+            fadeStop: 0.6                   // Where the glow fades to transparent (0.0 - 1.0, e.g., 0.7 = 70%)
+        };
+        // Apply a static glow
         const staticGradient = `radial-gradient(circle ${glowConfig.glowSize * 0.5}px at 50% 20%, rgba(${glowConfig.baseColorRGB}, ${glowConfig.baseAlpha * 0.5}) 0%, rgba(${glowConfig.baseColorRGB}, 0) ${glowConfig.fadeStop * 100}%)`;
         bodyElementForGlow.style.backgroundImage = staticGradient;
-    }
+
     });
     // ==========================================
     // == END OF GLOW EFFECT CODE            ==
     // ==========================================
-
     // --- Footer Time ---
     function displayTime() {
         if (!timeElement) return; // Only run if element exists
@@ -345,5 +297,3 @@
     // --- Initial Load ---
     loadItems(); // Load data when the page is ready
     displayItemDetails(null); // Start with empty details
-
-
