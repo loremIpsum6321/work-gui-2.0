@@ -16,7 +16,7 @@ class MainWindow(QMainWindow):
         self.setWindowFlag(Qt.FramelessWindowHint)  # Remove window frame
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setMouseTracking(True)
-        self.setMinimumSize(400, 600)
+        self.setMinimumSize(600, 600)
         
         #padding for the window
         self.padding = QMargins(0, 0, 0, 50) #arguments are (left, top, right, bottom) 50 px to be ontop of the start bar
