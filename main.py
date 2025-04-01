@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDesktopWidget, QLabel, QWidget
-from PyQt5.QtCore import Qt, QRect, QPoint, QSize, QPropertyAnimation, QEasingCurve, QTimer, QEvent, QMargins
+from PyQt5.QtCore import Qt, QRect, QPoint, QSize, QPropertyAnimation, QEasingCurve, QTimer, QEvent, QMargins, QCoreApplication
 from PyQt5.QtWebEngineWidgets import QWebEngineSettings, QWebEngineView
 
 from core.webview_manager import WebviewManager
@@ -18,8 +18,9 @@ class MainWindow(QMainWindow):
         self.setMouseTracking(True)
         self.setMinimumSize(600, 600)
         
+        self.is_shifted = False
         #padding for the window
-        self.padding = QMargins(0, 0, 0, 50) #arguments are (left, top, right, bottom) 50 px to be ontop of the start bar
+        self.padding = QMargins(0, 0, 0, 48) #arguments are (left, top, right, bottom) 50 px to be ontop of the start bar
 
         self.oldPos = None
         self.close_button = None
@@ -43,7 +44,7 @@ class MainWindow(QMainWindow):
     def init_close_button(self):
         """Initializes the close button."""
         self.close_button = QLabel(self)
-        self.close_button.setText("X")
+        self.close_button.setText("x")
         self.close_button.setStyleSheet("""
             QLabel {
                 color: rgba(255, 255, 255, 0); 
@@ -104,6 +105,17 @@ class MainWindow(QMainWindow):
             if new_width >= self.minimumWidth():
                 self.resize(new_width, self.height())                
                 self.oldPos = global_pos
+
+    def keyPressEvent(self, event):
+        if event.modifiers() == Qt.ControlModifier and event.key() == Qt.Key_Space: 
+            self.toggle_shift()
+
+    def toggle_shift(self):
+        self.is_shifted = not self.is_shifted
+        if self.is_shifted:
+            self.move(-self.width(), 0)
+        else:
+            self.move(0, 0)
 
     def resizeEvent(self, event):
         """Override resizeEvent to keep the window pinned to the left."""
