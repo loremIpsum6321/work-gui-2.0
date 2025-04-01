@@ -168,6 +168,10 @@
         );
 
         highlightedIndex = -1; // Reset highlight when typing
+        if (filteredItems.length > 0) {
+            highlightedIndex = 0; // Auto-select the first item
+            highlightSuggestion(highlightedIndex);
+        }
         displaySuggestions(filteredItems);
     });
 
