@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLineEdit, QShortcut, QFileDia
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile
 from ui.file_browser import FileBrowser # Updated import
 from .utils import is_valid_url, get_local_ip # Updated import
-import os
+
 
 class WebviewManager(QWidget):
     """Manages the webview and its behavior."""
@@ -39,6 +39,10 @@ class WebviewManager(QWidget):
         # Hotkey to open file browser (Ctrl+O)
         self.file_shortcut = QShortcut("Ctrl+O", self)
         self.file_shortcut.activated.connect(self.open_file_browser)
+
+        # Hotkey for back button (ESC)
+        self.back_shortcut = QShortcut("Esc", self)
+        self.back_shortcut.activated.connect(self.go_back)
 
         # Create a button for clearing the cache
         self.clear_cache_button = QPushButton("Clear Cache", self)
@@ -87,6 +91,10 @@ class WebviewManager(QWidget):
         file_path = file_browser.get_file_path()
         if file_path:
             self.webview.setUrl(QUrl.fromLocalFile(file_path))
+
+    def go_back(self):
+        """Navigates back in the webview history."""
+        self.webview.back()
 
     def clear_cache(self):
         """Clears the webview cache."""

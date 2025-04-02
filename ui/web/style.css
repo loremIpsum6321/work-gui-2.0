@@ -288,6 +288,13 @@ a:hover {
     width: 100%;
     opacity: 0.5;
 }
+.main-footer a {
+    color: var(--medium-text);
+    text-decoration: underline;
+}
+.main-footer a:hover {
+    color: var(--light-text);
+}
 .main-footer p { margin-bottom: 0.5rem;}
 
 

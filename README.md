@@ -1,7 +1,5 @@
 # Work GUI 2.0
 
-For use at Mars to look up Ingredient numbers
-
 
 ---
 
