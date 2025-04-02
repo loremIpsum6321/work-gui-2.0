@@ -269,9 +269,7 @@
         bodyElementForGlow.style.backgroundImage = staticGradient;
 
     });
-    // ==========================================
-    // == END OF GLOW EFFECT CODE            ==
-    // ==========================================
+
     // --- Footer Time ---
     function displayTime() {
         if (!timeElement) return; // Only run if element exists

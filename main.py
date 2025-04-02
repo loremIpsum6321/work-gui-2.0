@@ -1,11 +1,13 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDesktopWidget, QLabel, QWidget
-from PyQt5.QtCore import Qt, QRect, QPoint, QSize, QPropertyAnimation, QEasingCurve, QTimer, QEvent, QMargins, QCoreApplication
+from PyQt5.QtCore import Qt, QRect, QPoint, QSize, QPropertyAnimation, QEasingCurve, QTimer, QEvent, QMargins, QCoreApplication, QRect
 from PyQt5.QtWebEngineWidgets import QWebEngineSettings, QWebEngineView
+from PyQt5.QtGui import QScreen  # Import QScreen from QtGui
 
 from core.webview_manager import WebviewManager
 from core.server_manager import ServerManager, get_local_ip
 import os
+
 
 class MainWindow(QMainWindow):
     """Main window class to manage the application window."""
@@ -17,18 +19,20 @@ class MainWindow(QMainWindow):
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setMouseTracking(True)
         self.setMinimumSize(600, 600)
-        
+
         self.is_shifted = False
-        #padding for the window
-        self.padding = QMargins(0, 0, 0, 48) #arguments are (left, top, right, bottom) 50 px to be ontop of the start bar
+        # padding for the window
+        self.padding = QMargins(0, 0, 0, 48)  # arguments are (left, top, right, bottom) 50 px to be ontop of the start bar
 
         self.oldPos = None
         self.close_button = None
+        self.current_screen_geometry = None
+        self.shift_offset = 0 #new variable
 
         # Disable cache and offline storage
         settings = QWebEngineSettings.globalSettings()
         settings.setAttribute(QWebEngineSettings.LocalStorageEnabled, False)
-        #settings.setAttribute(QWebEngineSettings.OfflineStorageDefaultQuota, 0) #removed because it is not supported in the current version of QtWebEngine
+        # settings.setAttribute(QWebEngineSettings.OfflineStorageDefaultQuota, 0) #removed because it is not supported in the current version of QtWebEngine
 
         # Create the webview manager and set it as the central widget
         self.webview_manager = WebviewManager(server_manager)
@@ -61,10 +65,10 @@ class MainWindow(QMainWindow):
             }
         """)
         self.close_button.setAlignment(Qt.AlignCenter)
-        self.close_button.setFixedSize(40, 20) #increased the width from 20 to 40
+        self.close_button.setFixedSize(40, 20)  # increased the width from 20 to 40
         self.close_button.mousePressEvent = self.close_app
         self.close_button.hide()
-       
+
         self.close_animation = QPropertyAnimation(self, b"windowOpacity")
         self.close_animation.setDuration(500)
         self.close_animation.setEndValue(0)
@@ -103,27 +107,39 @@ class MainWindow(QMainWindow):
             delta = global_pos.x() - self.oldPos.x()
             new_width = self.width() + delta
             if new_width >= self.minimumWidth():
-                self.resize(new_width, self.height())                
+                self.resize(new_width, self.height())
                 self.oldPos = global_pos
 
     def keyPressEvent(self, event):
-        if event.modifiers() == Qt.ControlModifier and event.key() == Qt.Key_Space: 
+        if event.modifiers() == Qt.ControlModifier and event.key() == Qt.Key_Space:
             self.toggle_shift()
 
     def toggle_shift(self):
         self.is_shifted = not self.is_shifted
+        self.update_window_position()
+
+    def update_window_position(self):
+        """Updates the window position based on the shift state and screen."""
+        screen = self.get_secondary_screen_geometry()
+        if screen is None:
+            screen = QDesktopWidget().screenGeometry()
+        self.current_screen_geometry = screen
+
         if self.is_shifted:
-            self.move(-self.width(), 0)
+            self.shift_offset = -self.width()
         else:
-            self.move(0, 0)
+            self.shift_offset = 0
+
+        self.move(screen.x() + self.shift_offset, screen.y())
 
     def resizeEvent(self, event):
-        """Override resizeEvent to keep the window pinned to the left."""
-        screen = QDesktopWidget().screenGeometry()        
+        """Override resizeEvent to keep the window pinned to the left of the correct screen."""
+        self.update_window_position()
         self.webview_manager.setContentsMargins(self.padding)
-        self.setGeometry(0, 0, self.width(), screen.height())
+        self.setGeometry(self.current_screen_geometry.x() + self.shift_offset, self.current_screen_geometry.y(), self.width(), self.current_screen_geometry.height())
+
         if self.close_button:
-            self.close_button.move(self.width() - 40, 0) #changed from 20 to 40
+            self.close_button.move(self.width() - 40, 0)  # changed from 20 to 40
         self.resize_widget.setGeometry(self.width() - 10, 0, 10, self.height())
         super().resizeEvent(event)
 
@@ -141,7 +157,7 @@ class MainWindow(QMainWindow):
         if self.close_button:
             self.close_button_animation.setEndValue(0)
             self.close_button_animation.start()
-    
+
     def resize_enter_event(self, event):
         self.setCursor(Qt.SizeHorCursor)
 
@@ -151,6 +167,17 @@ class MainWindow(QMainWindow):
 
     def show(self):
         super().show()
+        self.update_window_position()
+
+    def get_secondary_screen_geometry(self):
+        """Gets the geometry of the secondary screen if it exists."""
+        screens = QScreen.virtualSiblings(QApplication.primaryScreen())
+        if len(screens) > 1:
+            for screen in screens:
+                if screen != QApplication.primaryScreen():
+                    return screen.geometry()
+        return None
+
 
 def main():
     """Main function to start the application."""
@@ -169,7 +196,7 @@ def main():
 
     # Create and show the main window
     main_window = MainWindow(server_manager)
-   
+
     main_window.show()
 
     # Run the application
