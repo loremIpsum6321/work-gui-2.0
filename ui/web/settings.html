@@ -4,10 +4,35 @@
     <title>Settings</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1>Theme Settings</h1>
-    <div id="settings-container">
+<body class="settings-body">
+    <main class="container">
+        <h1>Theme Settings</h1>
+        <div id="settings-container">
+            <div class="setting-group">
+                <h2>Primary Color</h2>
+                <div class="color-picker-container">
+                    <input type="color" id="primaryColorPicker" class="color-picker" value="#4CAF50">
+                    <label for="primaryColorPicker">Primary Color</label>
+                </div>
+            </div>
+            <div class="setting-group">
+                <h2>Secondary Color</h2>
+                <div class="color-picker-container">
+                    <input type="color" id="secondaryColorPicker" class="color-picker" value="#2196F3">
+                    <label for="secondaryColorPicker">Secondary Color</label>
+                </div>
+            </div>
+            <div class="setting-group">
+                <h2>Background Color</h2>
+                <div class="color-picker-container">
+                    <input type="color" id="backgroundColorPicker" class="color-picker" value="#f0f0f0">
+                    <label for="backgroundColorPicker">Background Color</label>
+                </div>
+            </div>
+            <button id="applyThemeButton">Apply Theme</button>
         </div>
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>

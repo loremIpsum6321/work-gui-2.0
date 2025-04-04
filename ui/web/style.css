@@ -123,8 +123,8 @@ a:hover {
     width: 100%;
     padding: 12px 15px; /* Reduced padding */
     font-size: 1.1rem;
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
+    background-color: var(--dark-bg);
+    border: 0px solid var(--dark-color);
     border-radius: 8px; /* Slightly rounded */
     color: var(--light-text);
     margin-bottom: 1rem;
@@ -168,7 +168,7 @@ a:hover {
     margin-bottom: 0.5rem;
     background-color: var(--dark-bg); /* Slightly darker than input */
     border: 1px solid var(--border-color);
-    border-radius: 25px; /* Pill shape like image */
+    border-radius: 8px; /* Pill shape like image */
     cursor: pointer;
     width: 100%;
     color: var(--medium-text);
@@ -288,13 +288,6 @@ a:hover {
     width: 100%;
     opacity: 0.5;
 }
-.main-footer a {
-    color: var(--medium-text);
-    text-decoration: underline;
-}
-.main-footer a:hover {
-    color: var(--light-text);
-}
 .main-footer p { margin-bottom: 0.5rem;}
 
 
@@ -323,7 +316,7 @@ a:hover {
     .main-nav ul li {
         margin: 0 0.8rem;
     }
-    #searchInput { font-size: 1rem; padding: 12px 15px; }
+    #searchInput { font-size: 1rem; padding: 12px 15px; border: 1px solid var(--border-color); }
     .suggestion-item { padding: 10px 15px; }
     .details-column { padding: 1.5rem; }
     #itemDetails p { flex-direction: column; align-items: flex-start; }

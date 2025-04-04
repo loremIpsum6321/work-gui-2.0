@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', () => {
     // --- DOM Elements ---
     const searchInput = document.getElementById('searchInput');
     const suggestionsList = document.getElementById('suggestionsList');
@@ -6,10 +7,13 @@
     const detailDescription = document.getElementById('detailDescription');
     const detailPriceKg = document.getElementById('detailPriceKg');
     const detailPriceLb = document.getElementById('detailPriceLb');
-    const detailCategory = document.getElementById('detailCategory');
-    const detailNotes = document.getElementById('detailNotes');
-    const copyNotification = document.getElementById('copyNotification');
+    // const detailCategory = document.getElementById('detailCategory');
+    const shelfLifeDays = document.getElementById('shelfLifeDays') || { textContent: '' };
+    const shelfLifeDate = document.getElementById('shelfLifeDate') || { textContent: '' };
+    const detailNotes = document.getElementById('detailNotes') || { textContent: '' };
+    const copyNotification = document.getElementById('copyNotification') || { textContent: '' };
     const timeElement = document.getElementById('current-time'); // For footer time
+
     // --- Event Listener: Click Input to Clear ---
     searchInput.addEventListener('click', () => {
         // Only clear if it already has some value
@@ -22,6 +26,7 @@
         // Note: We don't explicitly call searchInput.focus() here,
         // as the click event itself implies the input is gaining focus.
     });
+
     // --- State Variables ---
     let allItems = []; // To store data from items.json
     let filteredItems = []; // To store currently filtered suggestions
@@ -29,19 +34,21 @@
     const MAX_SUGGESTIONS = 8; // Max suggestions to show
 
     // --- Fetch Item Data ---
-    async function loadItems() {
-        try {
-            const response = await fetch('items.json');
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            allItems = await response.json();
-            // console.log('Items loaded:', allItems); // For debugging
-        } catch (error) {
-            console.error("Could not load items:", error);
-            suggestionsList.innerHTML = '<li class="suggestion-item">Error loading items.</li>';
+async function loadItems() {
+    try {
+        const response = await fetch('items.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+        allItems = await response.json();
+        filteredItems = allItems; // Update filteredItems when allItems is updated
+        // console.log('Items loaded:', allItems); // For debugging
+    } catch (error) {
+        console.error("Could not load items:", error);
+        suggestionsList.innerHTML = '<li class="suggestion-item">Error loading items.</li>';
     }
+}
+
 
     // --- Display Suggestions ---
     function displaySuggestions(items) {
@@ -86,21 +93,25 @@
     // --- Display Item Details ---
     function displayItemDetails(item) {
         if (!item) { // Clear details if no item
-            detailGrd.textContent = '-';
-            detailDescription.textContent = '-';
-            detailPriceKg.textContent = '-';
-            detailPriceLb.textContent = '-';
-            detailCategory.textContent = '-';
-            detailNotes.textContent = '-';
+            detailGrd.textContent = '-'; 
+            detailDescription.textContent = '-'; 
+            detailPriceKg.textContent = '-'; 
+            detailPriceLb.textContent = '-'; 
+            // detailCategory.textContent = '-'; // Ensure these elements exist
+            
+            shelfLifeDays.textContent = '-'; 
+            shelfLifeDate.textContent = '-'; 
+            detailNotes.textContent = '-'; 
             return;
         }
         detailGrd.textContent = item.grd || '-';
         detailDescription.textContent = item.description || '-';
         detailPriceKg.textContent = item.price_kg ? `$${item.price_kg.toFixed(2)}` : '-';
         detailPriceLb.textContent = item.price_lb ? `$${item.price_lb.toFixed(2)}` : '-';
-        detailCategory.textContent = item.category || '-';
+        // detailCategory.textContent = item.category || '-';
+        shelfLifeDays.textContent = item.shelf_life_days || '-';
+        shelfLifeDate.textContent = item.shelf_life_date || '-';
         detailNotes.textContent = item.notes || '-';
-        // Update other detail spans if you added more
     }
 
     // --- Highlight Suggestion (Visual) ---
@@ -253,22 +264,17 @@
         }
     });
 
-    // ==========================================
-    document.addEventListener('DOMContentLoaded', () => {
     // == SMOOTH MOUSE-FOLLOWING GLOW EFFECT ==
-    // ==========================================    
-        const bodyElementForGlow = document.body; // Re-declare if needed, or reuse existing body var
-        const glowConfig = {
-            glowSize: 900,                  // Size of the glow circle in pixels
-            baseColorRGB: "168, 85, 247",   // RGB values for the glow purple color (without 'rgba()')
-            baseAlpha: 0.06,                // Base intensity/opacity (0.0 - 1.0)
-            fadeStop: 0.6                   // Where the glow fades to transparent (0.0 - 1.0, e.g., 0.7 = 70%)
-        };
-        // Apply a static glow
-        const staticGradient = `radial-gradient(circle ${glowConfig.glowSize * 0.5}px at 50% 20%, rgba(${glowConfig.baseColorRGB}, ${glowConfig.baseAlpha * 0.5}) 0%, rgba(${glowConfig.baseColorRGB}, 0) ${glowConfig.fadeStop * 100}%)`;
-        bodyElementForGlow.style.backgroundImage = staticGradient;
-
-    });
+    const bodyElementForGlow = document.body; // Re-declare if needed, or reuse existing body var
+    const glowConfig = {
+        glowSize: 900,                  // Size of the glow circle in pixels
+        baseColorRGB: "168, 85, 247",   // RGB values for the glow purple color (without 'rgba()')
+        baseAlpha: 0.06,                // Base intensity/opacity (0.0 - 1.0)
+        fadeStop: 0.6                   // Where the glow fades to transparent (0.0 - 1.0, e.g., 0.7 = 70%)
+    };
+    // Apply a static glow
+    const staticGradient = `radial-gradient(circle ${glowConfig.glowSize * 0.5}px at 50% 20%, rgba(${glowConfig.baseColorRGB}, ${glowConfig.baseAlpha * 0.5}) 0%, rgba(${glowConfig.baseColorRGB}, 0) ${glowConfig.fadeStop * 100}%)`;
+    bodyElementForGlow.style.backgroundImage = staticGradient;
 
     // --- Footer Time ---
     function displayTime() {
@@ -298,4 +304,5 @@
 
     // --- Initial Load ---
     loadItems(); // Load data when the page is ready
-    displayItemDetails(null); // Start with empty details
+    displayItemDetails(null); // Start with empty details 
+});

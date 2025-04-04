@@ -7,6 +7,7 @@ from PyQt5.QtGui import QScreen  # Import QScreen from QtGui
 from core.webview_manager import WebviewManager
 from core.server_manager import ServerManager, get_local_ip
 import os
+import logging
 
 
 class MainWindow(QMainWindow):
@@ -22,7 +23,7 @@ class MainWindow(QMainWindow):
 
         self.is_shifted = False
         # padding for the window
-        self.padding = QMargins(0, 0, 0, 48)  # arguments are (left, top, right, bottom) 50 px to be ontop of the start bar
+        self.padding = QMargins(0, 0, 0, 0)  # arguments are (left, top, right, bottom) 50 px to be ontop of the start bar
 
         self.oldPos = None
         self.close_button = None
@@ -182,6 +183,10 @@ class MainWindow(QMainWindow):
 def main():
     """Main function to start the application."""
     app = QApplication(sys.argv)
+    
+    # Configure logging
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 
     # Start the local server
     server_manager = ServerManager()
@@ -189,10 +194,10 @@ def main():
     local_ip = get_local_ip()
     if local_ip:
         print(f"Server started on port {server_manager.port}")
-        print(f"Access it at http://{local_ip}:{server_manager.port}")
+        logging.info(f"Access it at http://{local_ip}:{server_manager.port}")
     else:
         print(f"Server started on port {server_manager.port}")
-        print(f"Access it at http://localhost:{server_manager.port}")
+        logging.info(f"Access it at http://localhost:{server_manager.port}")
 
     # Create and show the main window
     main_window = MainWindow(server_manager)
